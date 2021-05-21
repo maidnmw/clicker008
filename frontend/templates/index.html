@@ -13,7 +13,23 @@
     <div class='flex-center'>
         <h1>HEY CLICKER</h1>
         <p class="counter" id="counter">{{maincycle.coins_count}}</p>
-        <button onclick="call_click()">click me</button>
+        <p id="click_power">{{maincycle.click_power}}</p>
+        <button class="click-holder" onclick="call_click()">
+            <img id="click-image" src="{% static 'imgs/kakashi.png' %}" alt="">
+        </button>
+
+        <div class="boost-container">                
+            <h3>Boosts</h3>
+            <div class="boost-holder" id="boost-holder">
+                {% for boost in boosts %}
+                    <button class="boost" id="boost_{{boost.id}}" onclick="update_boost({{boost.id}})">
+                        <p>lvl: <span id="boost_level">{{boost.level}}</span></p>
+                        <p>pow: +<span id="boost_power">{{boost.power}}</span></p>
+                        <p>buy: <span id="boost_price">{{boost.price}}</span></p>
+                    </button>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 </body>
 </html>
