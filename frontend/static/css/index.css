@@ -19,6 +19,13 @@ p {
     color: red;
 }
 
+.container {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    height: 100vh;
+}
+
 .click-holder {
     display: flex;
     justify-content: center;
@@ -40,6 +47,22 @@ p {
     user-drag: none;
 }
 
+.menu-container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.click-container {
+    display: flex;
+    flex: 2;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3vh 0;
+}
 
 .boost-container {
     display: flex;
@@ -50,8 +73,9 @@ p {
 .boost-holder {
     display: flex;
     flex-direction: row;
-    flex: 1;
     flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
 }
 
 .boost {
@@ -63,4 +87,8 @@ p {
     justify-content: center;
     align-items: center;
     border-radius: 20px;
+}
+
+.auto {
+    background: khaki;
 }

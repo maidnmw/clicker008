@@ -24,10 +24,24 @@ def index(request):
 @api_view(['GET'])
 def call_click(request):
     maincycle = models.MainCycle.objects.get(user=request.user)
-    maincycle.click()
+    is_boost_created = maincycle.click()
     maincycle.save()
-    
-    return Response(maincycle.coins_count)
+
+    if is_boost_created:
+        boost_type = 0
+        if maincycle.level % 3 == 0:
+            boost_type = 1
+
+        boost = models.Boost(main_cycle=maincycle, power=maincycle.level*20, price=maincycle.level*50, boost_type=boost_type)
+        boost.save()
+
+        return Response({
+            'main_cycle': MainCycleSerializer(maincycle).data,
+            'boost': BoostSerializer(boost).data,
+        })
+    return Response({
+        'main_cycle': MainCycleSerializer(maincycle).data,
+    })
 
 
 @api_view(['POST'])
